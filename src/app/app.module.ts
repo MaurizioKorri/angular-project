@@ -1,16 +1,26 @@
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent,
+    CustomersListComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
