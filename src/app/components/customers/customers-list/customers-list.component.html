@@ -23,14 +23,12 @@
             <button class="btn btn-primary" (click)="viewDetails(customer)"  >&gt;&gt;</button>
           </td>
         </tr>
-
-
       </tbody>
     </table>
   </div>
 
   <div class="col-5">
-    <app-customer-details [customer]="selectedCustomer"></app-customer-details>
+    <app-customer-details #customer_details></app-customer-details>
   </div>
 
 </div>
