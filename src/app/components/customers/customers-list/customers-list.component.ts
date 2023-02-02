@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
+import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
 
 @Component({
   selector: 'app-customers-list',
@@ -16,9 +17,12 @@ export class CustomersListComponent {
   customers: Customer[] = [];//dal template io posso accedere alla variabile customers
   selectedCustomer: Customer = new Customer();
 
+  @ViewChild('customer_details')
+  customerDetailsComponent: CustomerDetailsComponent;
+
+
   constructor(private customerService: CustomerService) {  }
 
-  //customer: Customer
 
   ngOnInit(){
 
@@ -47,8 +51,9 @@ export class CustomersListComponent {
 
   viewDetails(customer: Customer): void{
 
-    this.selectedCustomer = customer;
-    console.log("View details : ",  customer);
+    //this.selectedCustomer = customer;
+    //console.log("View details : ",  customer);
 
+    this.customerDetailsComponent.customer = customer;
   }
 }
