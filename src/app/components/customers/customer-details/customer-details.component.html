@@ -3,9 +3,7 @@
 <div>
   <h2>{{ customer.firstName}} {{customer.lastName}}</h2>
 
-  <div>
-    {{ customer | json }}
-  </div>
+
 
 
   <div>
@@ -22,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let singleAdr of adrList">
+          <tr *ngFor="let singleAdr of customer.addresses">
             <td>{{ singleAdr.id }}</td>
             <td> {{ singleAdr.city }}</td>
             <td>{{ singleAdr.streetAddress }}</td>

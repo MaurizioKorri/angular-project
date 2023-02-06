@@ -41,7 +41,7 @@ export class CustomerDetailsComponent {
           console.log(customer);
 
           this.customer = customer;
-          this.adrList = customer.addressList;
+          this.adrList = customer.addresses;
           console.log("la adr list selezionata", this.adrList)
         }
       );

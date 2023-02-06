@@ -1,5 +1,6 @@
 export const environment = {
 
-    endpoint: 'http://localhost:8080'
+  endpoint: 'http://localhost:8080'
+
 
 };

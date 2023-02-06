@@ -5,6 +5,6 @@ export class Customer {
     lastName: String;
     cc: String;
     active: boolean;
-    addressList: Address[];
+    addresses: Address[];
     productList: any
   }
