@@ -2,12 +2,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Address } from '../models/address';
+import { Product } from '../models/Product';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddressService {
+export class ProductService {
 
   private baseUrl = environment.endpoint;
 
@@ -15,7 +15,7 @@ export class AddressService {
 
 
 
-  getAddressList(): Observable<Address[]>{
-    return this.http.get<Address[]>(this.baseUrl + '/api/addresses/');
+  getProductsList(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.baseUrl + '/api/products/');
   }
 }

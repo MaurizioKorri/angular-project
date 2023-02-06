@@ -1,0 +1,14 @@
+<h2>Customers</h2>
+
+
+<div class="row">
+  <div class="col-7">
+  </div>
+    <app-customers-list [customers]="customers" (onCustomerSelection)="onCustomerSelected($event)"></app-customers-list>
+  <div class="col-5">
+    <app-customer-details   [customer]="selectedCustomer"></app-customer-details>
+  </div>
+
+</div>
+
+

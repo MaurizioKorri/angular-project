@@ -1,3 +1,4 @@
+import { CustomersPanelComponent } from './components/customers/customers-panel/customers-panel.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +9,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
 import {HttpClientModule} from '@angular/common/http';
-import { AddressesListComponent } from './components/addresses/addresses-list/addresses-list.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddressesListComponent } from './components/addresses/addresses-list/ad
     WelcomeComponent,
     CustomersListComponent,
     CustomerDetailsComponent,
-    AddressesListComponent
+    ProductsListComponent,
+    CustomersPanelComponent,
   ],
   imports: [
     BrowserModule,

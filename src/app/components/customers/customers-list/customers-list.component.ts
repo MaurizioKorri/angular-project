@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
 import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
@@ -14,46 +14,22 @@ import { CustomerDetailsComponent } from '../customer-details/customer-details.c
 
 export class CustomersListComponent {
 
+  @Input()
   customers: Customer[] = [];//dal template io posso accedere alla variabile customers
-  selectedCustomer: Customer = new Customer();
 
-  @ViewChild('customer_details')
-  customerDetailsComponent: CustomerDetailsComponent;
+  @Output() onCustomerSelection: EventEmitter<Customer> = new EventEmitter<Customer>();
 
+  //@ViewChild('customer_details')
+  //customerDetailsComponent: CustomerDetailsComponent;
 
   constructor(private customerService: CustomerService) {  }
 
-
   ngOnInit(){
-
-    //myObservable.subscribe(myObserver);
-    this.customerService.getCustomersList().subscribe(
-      //fare la subscribe significa gestire l'evento  nel momento in cui arrivano i valori
-      //mi attacco all'observable, quando arrivano i dati arrivano puliti, quindi arriva una Customer[]
-      (data: Customer[]) => {
-        console.log('siamo dentro alla getCustomersList subscribe');
-        console.log(data);
-        //var customer: Customer = new Customer();
-        data.forEach( (customer) => {
-          this.customers.push(customer);
-
-        })
-
-      }
-    )
-    //console.log("debug")
-    //console.log(this.customer)
-    console.log("debug", this.customers)
-
   }
 
-
-
   viewDetails(customer: Customer): void{
-
-    //this.selectedCustomer = customer;
-    //console.log("View details : ",  customer);
-
-    this.customerDetailsComponent.customer = customer;
+    console.log("viewDetails => ", customer);
+    this.customerService.setCustomer(customer);
+    this.onCustomerSelection.emit(customer);
   }
 }

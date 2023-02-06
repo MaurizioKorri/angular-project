@@ -2,7 +2,38 @@
 <h3>Customer Details</h3>
 <div>
   <h2>{{ customer.firstName}} {{customer.lastName}}</h2>
+
   <div>
     {{ customer | json }}
   </div>
+
+
+  <div>
+    <div class="col-7">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">city</th>
+            <th scope="col">Street Address</th>
+            <th scope="col">Zip Code</th>
+            <th scope="col">Country</th>
+            <th scope="col">Address Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let singleAdr of adrList">
+            <td>{{ singleAdr.id }}</td>
+            <td> {{ singleAdr.city }}</td>
+            <td>{{ singleAdr.streetAddress }}</td>
+            <td>{{ singleAdr.zipcode }}</td>
+            <td>{{ singleAdr.country }}</td>
+            <td>{{ singleAdr.addressType }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
 </div>

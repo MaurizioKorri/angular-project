@@ -2,6 +2,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/models/customer';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-customer-details',
@@ -17,9 +18,11 @@ export class CustomerDetailsComponent {
     that the property can receive its value from its parent component.
   */
 
-  //@Input() customer: Customer = new Customer(); //property decorated with Input()
+  @Input() customer: Customer = new Customer(); //property decorated with Input()
 
-  customer: Customer = new Customer();
+  //customer!: Customer;
+
+  adrList: Address[] = [];
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService) { }
 
@@ -27,7 +30,7 @@ export class CustomerDetailsComponent {
 
     const routeParams = this.route.snapshot.paramMap;
     const customerIdFromRoute = Number(routeParams.get('customerId'));
-    debugger
+
     if(customerIdFromRoute > 0){
 
       console.log("Viewing Customer with ID: " + customerIdFromRoute);
@@ -38,9 +41,19 @@ export class CustomerDetailsComponent {
           console.log(customer);
 
           this.customer = customer;
+          this.adrList = customer.addressList;
+          console.log("la adr list selezionata", this.adrList)
         }
       );
+
     }
+
+    /*this.customerService.selectedCustomer$.subscribe( (data) => {
+      console.log("[customerDetails] : selectedCustomer$", data);
+      this.customer = data;
+    });*/
+
+
   }
 
 }

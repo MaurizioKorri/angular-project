@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Customer } from '../models/customer';
 
@@ -9,24 +9,28 @@ import { Customer } from '../models/customer';
 })
 export class CustomerService {
 
-
   private baseUrl = environment.endpoint;
+
 
   constructor(private http: HttpClient) {}
 
 
-  getCustomersList(): Observable<Customer[]>{//tipo di ritorno del metodo
-      //vediamo come accedere all'oggetto http
-
+  getCustomersList(): Observable<Customer[]>{
       return this.http.get<Customer[]>(this.baseUrl + '/api/customers/');
+  }
 
+  getCustomerById(customerIdFromRoute: number): Observable<Customer> {
+      return this.http.get<Customer>(this.baseUrl + '/api/customers/' + customerIdFromRoute);
   }
 
 
-  getCustomerById(customerIdFromRoute: number): Observable<Customer> {
+  private customer$ = new BehaviorSubject<any>({});
+  selectedCustomer$ = this.customer$.asObservable();
 
-      return this.http.get<Customer>(this.baseUrl + '/api/customers/' + customerIdFromRoute);
-
-
+  setCustomer(customer: any) {      
+    console.log("[CustomerService] selectedCustomer", customer);
+    setTimeout((customer: Customer) => {
+      this.customer$.next(customer);
+    }, 0, customer)
   }
 }
