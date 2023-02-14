@@ -14,7 +14,7 @@ import { CustomerDetailsComponent } from '../customer-details/customer-details.c
 
 export class CustomersListComponent {
 
-  @Input()
+  //@Input()
   customers: Customer[] = [];//dal template io posso accedere alla variabile customers
 
   @Output() onCustomerSelection: EventEmitter<Customer> = new EventEmitter<Customer>();
@@ -25,11 +25,24 @@ export class CustomersListComponent {
   constructor(private customerService: CustomerService) {  }
 
   ngOnInit(){
+    this.customerService.customersList$.subscribe(
+      (data: Customer[]) => {
+        this.customers = data;
+
+    });
   }
 
   viewDetails(customer: Customer): void{
     console.log("viewDetails => ", customer);
-    this.customerService.setCustomer(customer);
+    //this.customerService.setCustomer(customer);
     this.onCustomerSelection.emit(customer);
+  }
+
+  refreshList() : void{
+    this.customerService.refreshList();
+  }
+
+  clearList() : void{
+    this.customers = [];
   }
 }

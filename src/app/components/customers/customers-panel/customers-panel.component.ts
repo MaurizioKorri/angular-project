@@ -16,7 +16,7 @@ export class CustomersPanelComponent implements OnInit {
 
   ngOnInit() {
 
-    this.customerService.getCustomersList().subscribe(
+/*     this.customerService.getCustomersList().subscribe(
       //fare la subscribe significa gestire l'evento  nel momento in cui arrivano i valori
       //mi attacco all'observable, quando arrivano i dati arrivano puliti, quindi arriva una Customer[]
       (data: Customer[]) => {
@@ -29,7 +29,9 @@ export class CustomersPanelComponent implements OnInit {
         })
 
       }
-    )
+    ) */
+
+    this.customerService.refreshList();
   }
 
   onCustomerSelected(event: Customer){
