@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { CustomersCountComponent } from './components/customers/customers-count/customers-count.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductsListComponent } from './components/products-list/products-list.
     CustomerDetailsComponent,
     ProductsListComponent,
     CustomersPanelComponent,
+    CustomersCountComponent,
   ],
   imports: [
     BrowserModule,
