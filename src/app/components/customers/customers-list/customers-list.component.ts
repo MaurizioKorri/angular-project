@@ -45,4 +45,6 @@ export class CustomersListComponent {
   clearList() : void{
     this.customers = [];
   }
+
+  
 }
