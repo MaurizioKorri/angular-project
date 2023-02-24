@@ -11,30 +11,36 @@ import { AuthService } from 'src/app/services/AuthService';
 })
 export class SignupComponent {
 
-
   @ViewChild('suform') suform: NgForm;
-
 
   constructor(private authService: AuthService) { }
 
   onSubmit(form: NgForm){
-    console.log(form)
-    const name = form.value.firstName;
-    const surname = form.value.lastName;
-    const email = form.value.email;
-    const password = form.value.password;
-    const cc = form.value.cc;
+
+    console.log('form data -> ', form);
+
+    let customer: Customer = new Customer();
+
+    customer.firstName = form.value.firstName;
+    customer.lastName = form.value.lastName;
+    customer.email = form.value.email;
+    customer.password = form.value.password;
+    customer.cc = form.value.cc;
 
 
-
-    this.authService.signUp({firstName: name, lastName: surname, email: email, password: password, cc: cc}).subscribe(
+    this.authService.signUp(customer).subscribe(
       data => {
-        console.log(data);
+        console.log('return of signUp method -> ', data);
+
+        this.authService.createSessionCustomer(data);
+
+        console.log('session customer -> ', this.authService.sessionCustomer);
+
+        localStorage.setItem('customer', (JSON).stringify(this.authService.sessionCustomer));
+
 
       }
     );
   }
-
-  
 
 }

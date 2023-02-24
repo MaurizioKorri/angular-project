@@ -1,33 +1,54 @@
 import { AuthService } from './../../../services/AuthService';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
+
+
 export class SigninComponent {
 
+  customerFound: boolean = true;
 
   constructor(private authService: AuthService){}
 
 
   onSubmit(form: NgForm){
+
     console.log(form)
-    const name = form.value.firstName;
-    const surname = form.value.lastName;
-    const email = form.value.email;
-    const password = form.value.password;
-    const cc = form.value.cc;
+
+    let customer: Customer = new Customer();
+    this.customerFound = true;
+
+    customer.email = form.value.email;
+    customer.password = form.value.password;
 
 
 
-    this.authService.signIn({firstName: name, lastName: surname, email: email, password: password, cc: cc}).subscribe(
-      data => {
-        console.log(data);
 
+    this.authService.signIn(customer).subscribe(
+      (data: Customer) => {
+
+
+        console.log('signin on submit', data);
+
+        if(data.email!=customer.email){
+          console.log("user not existing;")
+          this.customerFound = false;
+          return;
+        }
+
+        this.authService.createSessionCustomer(data);
+
+        console.log('session customer -> ', this.authService.sessionCustomer);
+
+        localStorage.setItem('customer', (JSON).stringify(this.authService.sessionCustomer));
       }
     );
   }
+
 }

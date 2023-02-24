@@ -10,23 +10,32 @@ import { Customer } from '../models/customer';
 export class AuthService {
 
   private baseUrl = environment.endpoint;
+  sessionCustomer: Customer = new Customer;
+  isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) {}
 
 
 
-  signUp(body: {}){
-    return this.http.post<Customer>(this.baseUrl + '/api/customers/' , body);
+  createSessionCustomer(customer: Customer){
+
+    this.sessionCustomer.firstName = customer.firstName;
+    this.sessionCustomer.lastName = customer.lastName;
+    this.sessionCustomer.email = customer.email;
+    this.sessionCustomer.cc = customer.cc;
+
   }
 
 
-  signIn(body: {}){
-    return this.http.get<Customer>(this.baseUrl + '/api/customers/' , body);
+  signUp(customer: any){
+    return this.http.post<Customer>(this.baseUrl + '/api/customers/' + 'signup' , customer);
   }
 
-  /*signIn(customerIdFromRoute: number): Observable<Customer> {
-    return this.http.get<Customer>(this.baseUrl + '/api/customers/' + customerIdFromRoute);
-  }*/
+
+  signIn(customer: any){
+    return this.http.post<Customer>(this.baseUrl + '/api/customers/' + 'signin' , customer);
+  }
+
 
 }
 

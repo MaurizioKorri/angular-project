@@ -23,6 +23,7 @@ export class CustomerService {
       return this.http.get<Customer>(this.baseUrl + '/api/customers/' + customerIdFromRoute);
   }
 
+
   private customersSubject$ = new Subject<Customer[]>();
   public customersList$ = this.customersSubject$.asObservable();
 
