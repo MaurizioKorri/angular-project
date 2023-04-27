@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment.development';
 import { Customer } from '../models/customer';
 
@@ -18,7 +18,7 @@ export class AuthService {
 
 
   createSessionCustomer(customer: Customer){
-
+    this.sessionCustomer.id = customer.id;
     this.sessionCustomer.firstName = customer.firstName;
     this.sessionCustomer.lastName = customer.lastName;
     this.sessionCustomer.email = customer.email;

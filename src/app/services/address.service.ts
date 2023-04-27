@@ -1,23 +1,19 @@
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Product } from '../models/Product';
+import { environment } from 'src/environments/environment.development';
+import { Address } from '../models/address';
 
 @Injectable({
   providedIn: 'root'
 })
-
-
-export class ProductService {
+export class AddressService {
 
   private baseUrl = environment.endpoint;
 
   constructor(private http: HttpClient) { }
 
-
-
-  getProductsList(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.baseUrl + '/api/products/');
+  public getCustomerAddresses(customerId: number){
+    return this.http.post<Address[]>(this.baseUrl + '/api/addresses/get', customerId);
   }
+
 }

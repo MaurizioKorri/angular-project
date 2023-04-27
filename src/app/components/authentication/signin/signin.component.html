@@ -1,6 +1,6 @@
 <div class="parent">
   <h1 class="mb-3">Login</h1>
-  <form #siform="ngForm" (ngSubmit)="onSubmit(siform)">
+  <form #siform="ngForm" (ngSubmit)="onSubmit(siform)"> 
     <mat-form-field appearance="fill">
       <mat-label>E-mail</mat-label>
       <input matInput type="email" name="email" ngModel required email>
@@ -9,8 +9,8 @@
       <mat-label>Password</mat-label>
       <input matInput type="password" name="password" ngModel required >
     </mat-form-field>
-    
-    <button mat-raised-button color="primary" type="submit" [disabled]="!siform.valid">Login</button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!siform.valid" >Login</button>
 
   </form>
   <br>

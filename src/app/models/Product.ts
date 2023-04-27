@@ -6,6 +6,12 @@ export class Product {
   id: Number
   productName: String
   productDescr: String
-  productPrice: Number
+  productPrice: number;
   productWeight: Number;
+
+
+
+  public getProductPrice(){
+    return this.productPrice;
+  }
 }

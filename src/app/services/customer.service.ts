@@ -1,8 +1,10 @@
+import { ShoppingCart } from './../models/ShoppingCart';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Customer } from '../models/customer';
+import { Product } from '../models/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,11 @@ export class CustomerService {
 
   getCustomerById(customerIdFromRoute: number): Observable<Customer> {
       return this.http.get<Customer>(this.baseUrl + '/api/customers/' + customerIdFromRoute);
+  }
+
+
+  getCustomerProducts(id: Number){
+    return this.http.post<ShoppingCart[]>(this.baseUrl + '/api/customersproducts/customer', id);
   }
 
 

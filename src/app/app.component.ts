@@ -1,4 +1,7 @@
+import { ProductService } from 'src/app/services/product.service';
 import { Component } from '@angular/core';
+import { Product } from './models/Product';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'iBuy';
+
+  title = 'Coffee Express';
+
+
+  constructor(){}
+
+
+  userInLocalStorage(){
+
+    if(localStorage.getItem('customer') != null) return true;
+
+    else return false;
+
+  }
+
+
 }

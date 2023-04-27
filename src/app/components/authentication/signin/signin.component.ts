@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../../services/AuthService';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -14,7 +15,7 @@ export class SigninComponent {
 
   customerFound: boolean = true;
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
 
   onSubmit(form: NgForm){
@@ -27,9 +28,6 @@ export class SigninComponent {
     customer.email = form.value.email;
     customer.password = form.value.password;
 
-
-
-
     this.authService.signIn(customer).subscribe(
       (data: Customer) => {
 
@@ -39,6 +37,7 @@ export class SigninComponent {
         if(data.email!=customer.email){
           console.log("user not existing;")
           this.customerFound = false;
+          this.goToHomePage();
           return;
         }
 
@@ -47,8 +46,24 @@ export class SigninComponent {
         console.log('session customer -> ', this.authService.sessionCustomer);
 
         localStorage.setItem('customer', (JSON).stringify(this.authService.sessionCustomer));
+
+        this.authService.isLoggedIn = true;
+
+
+
+        this.goToHomePage();
+
+
       }
     );
   }
+
+  private goToHomePage(){
+
+    this.router.navigate(['']);
+
+  }
+
+
 
 }

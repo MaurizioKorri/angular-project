@@ -72,3 +72,30 @@ h2, h3, h4 {
 h2, h3, h4 {
   font-family: 'Poppins', sans-serif;
 }
+
+.modalbodyText{
+  text-align:left;
+}
+
+
+/* https://bootsnipp.com/snippets/dGWP */
+.center{
+  width: 150px;
+    margin: 40px auto;
+
+  }
+
+.quantity input{
+
+  padding: 1px;
+  width: 49px;
+  
+  height: 34px;
+  text-align: center;
+
+}
+
+.quantity button{
+  margin-left: 5px;
+  margin-right: 5px;
+}

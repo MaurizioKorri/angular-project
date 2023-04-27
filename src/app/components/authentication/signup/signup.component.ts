@@ -1,6 +1,7 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/customer';
 import { AuthService } from 'src/app/services/AuthService';
 
@@ -13,7 +14,7 @@ export class SignupComponent {
 
   @ViewChild('suform') suform: NgForm;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit(form: NgForm){
 
@@ -31,16 +32,21 @@ export class SignupComponent {
     this.authService.signUp(customer).subscribe(
       data => {
         console.log('return of signUp method -> ', data);
-
         this.authService.createSessionCustomer(data);
-
         console.log('session customer -> ', this.authService.sessionCustomer);
-
         localStorage.setItem('customer', (JSON).stringify(this.authService.sessionCustomer));
+        this.authService.isLoggedIn = true;
 
-
+        this.goToHomePage();
       }
     );
+
+  }
+
+  private goToHomePage(){
+
+    this.router.navigate(['']);
+
   }
 
 }
